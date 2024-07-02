@@ -1,29 +1,31 @@
-# WH-Detection-Prototype
+# Motorcycle Helmet Detection
 
 ## Dependencies
 
 <ul>
 <li>Python 3.9</li>
 <li>PyQT5</li>
-<li>Yolov7 Requirements</li>
+<li>Yolov5 Requirements</li>
 </ul>
 
 ## Getting Started
 
-### 1. Clone YOLOv7 Repository
+### 1. Clone YOLOv5 Repository
+
 ```
-git clone https://github.com/WongKinYiu/yolov7.git
+git clone https://github.com/ultralytics/yolov5
 ```
 
 ### 2. Open a command line terminal on folder and type
 
 ```
-pip install -r yolov7/requirements.txt
+pip install -r yolov5/requirements.txt
 ```
 
-### 3. Run the WH-Detection Script
+### 3. Run the Detection Script
 
 ```
-python WH-Detection.py
+python app.py
 ```
+
 # JPQ-Motorycle-LowLight
