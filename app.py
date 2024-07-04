@@ -20,15 +20,19 @@ import time
 
 import sys
 
-if os.name == "posix":
-    machine_os = "mac"
+import platform
 
-elif os.name != "posix":
+if platform.system() == "Darwin":
+    machine_os = "mac"
+elif platform.system() == "Linux":
+    machine_os = "linux"
+else:
     machine_os = "windows"
 
 main_path = os.path.dirname(os.path.abspath(__file__)) + os.sep
 models_path = f"{main_path}models/"
 mac_commands_path = f"{main_path}Mac/"
+linux_commands_path = f"{main_path}Linux/"
 win_commands_path = f"{main_path}Windows/"
 
 class Ui_MainWindow(object):
@@ -149,9 +153,11 @@ class Ui_MainWindow(object):
     def small_detect_button_clicked(self):
 
         if machine_os == "windows":
-            process = subprocess.Popen(['open', f'{win_commands_path}Detect_Small.bat'])
+            process = subprocess.call(f'{win_commands_path}Detect_Small.bat')
         elif machine_os == "mac":
             process = subprocess.Popen(['open', f'{mac_commands_path}Detect_Small'])
+        elif machine_os == "linux":
+            process = subprocess.Popen(['bash', f'{linux_commands_path}Detect_Small.sh'])        
 
         process.wait()  # Wait for the process to finish
 
@@ -167,9 +173,11 @@ class Ui_MainWindow(object):
     def medium_detect_button_clicked(self):
 
         if machine_os == "windows":
-            process = subprocess.Popen(['open', f'{win_commands_path}Detect_Medium.bat'])
+            process = subprocess.call(f'{win_commands_path}Detect_Medium.bat')
         elif machine_os == "mac":
             process = subprocess.Popen(['open', f'{mac_commands_path}Detect_Medium'])
+        elif machine_os == "linux":
+            process = subprocess.Popen(['bash', f'{linux_commands_path}Detect_Medium.sh'])
     
         process.wait()  # Wait for the process to finish
 
@@ -185,9 +193,11 @@ class Ui_MainWindow(object):
     def large_detect_button_clicked(self):
 
         if machine_os == "windows":
-            process = subprocess.Popen(['open', f'{win_commands_path}Detect_Large.bat'])
+            process = subprocess.call(f'{win_commands_path}Detect_Large.bat')
         elif machine_os == "mac":
             process = subprocess.Popen(['open', f'{mac_commands_path}Detect_Large'])
+        elif machine_os == "linux":
+            process = subprocess.Popen(['bash', f'{linux_commands_path}Detect_Large.sh'])
 
         process.wait()  # Wait for the process to finish
 
