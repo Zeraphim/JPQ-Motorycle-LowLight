@@ -18,9 +18,18 @@ import os
 import shutil
 import time
 
+import sys
+
+if os.name == "posix":
+    machine_os = "mac"
+
+elif os.name != "posix":
+    machine_os = "windows"
+
 main_path = os.path.dirname(os.path.abspath(__file__)) + os.sep
 models_path = f"{main_path}models/"
 mac_commands_path = f"{main_path}Mac/"
+win_commands_path = f"{main_path}Windows/"
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -138,7 +147,12 @@ class Ui_MainWindow(object):
         self.graphicsView.centerOn(scene.sceneRect().center())
 
     def small_detect_button_clicked(self):
-        process = subprocess.Popen(['open', f'{mac_commands_path}Detect_Small'])
+
+        if machine_os == "windows":
+            process = subprocess.Popen(['open', f'{win_commands_path}Detect_Small.bat'])
+        elif machine_os == "mac":
+            process = subprocess.Popen(['open', f'{mac_commands_path}Detect_Small'])
+
         process.wait()  # Wait for the process to finish
 
         time.sleep(10)
@@ -151,7 +165,12 @@ class Ui_MainWindow(object):
         self.show_detection(detection_image_dir)
 
     def medium_detect_button_clicked(self):
-        process = subprocess.Popen(['open', f'{mac_commands_path}Detect_Medium'])
+
+        if machine_os == "windows":
+            process = subprocess.Popen(['open', f'{win_commands_path}Detect_Medium.bat'])
+        elif machine_os == "mac":
+            process = subprocess.Popen(['open', f'{mac_commands_path}Detect_Medium'])
+    
         process.wait()  # Wait for the process to finish
 
         time.sleep(10)
@@ -164,9 +183,12 @@ class Ui_MainWindow(object):
         self.show_detection(detection_image_dir)
 
     def large_detect_button_clicked(self):
-        process = subprocess.Popen(['open', f'{mac_commands_path}Detect_Large'])
 
-        subprocess.call(['open', ])
+        if machine_os == "windows":
+            process = subprocess.Popen(['open', f'{win_commands_path}Detect_Large.bat'])
+        elif machine_os == "mac":
+            process = subprocess.Popen(['open', f'{mac_commands_path}Detect_Large'])
+
         process.wait()  # Wait for the process to finish
 
         time.sleep(10)
